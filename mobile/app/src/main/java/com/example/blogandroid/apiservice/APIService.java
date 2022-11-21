@@ -1,5 +1,6 @@
 package com.example.blogandroid.apiservice;
 
+import com.example.blogandroid.models.CommentModel;
 import com.example.blogandroid.models.PostModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -80,4 +81,7 @@ public interface APIService {
 
     @HTTP(method = "DELETE", hasBody = true, path = "posts")
     Call<Void> deletePost(@Body HashMap<String, Integer> postIdData);
+
+    @POST("comments")
+    Call<List<CommentModel>> getCommentsFromPost(@Body HashMap<String, Integer> postIdData);
 }
