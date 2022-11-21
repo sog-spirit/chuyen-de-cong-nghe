@@ -22,6 +22,7 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface APIService {
     Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy HH:mm:ss").create();
@@ -84,4 +85,13 @@ public interface APIService {
 
     @POST("comments")
     Call<List<CommentModel>> getCommentsFromPost(@Body HashMap<String, Integer> postIdData);
+
+    @POST("comment")
+    Call<Void> createCommentFromPost(@Body HashMap<String, Object> newCommentData);
+
+    @GET("comment")
+    Call<CommentModel> getCommentById(@Query("comment_id") int commentId);
+
+    @PATCH("comment")
+    Call<Void> editComment(@Body HashMap<String, Object> commentEditData);
 }
