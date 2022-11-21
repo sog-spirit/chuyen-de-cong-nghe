@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.blogandroid.databinding.ActivityFragmentReplacerBinding;
+import com.example.blogandroid.fragments.homeactivity.CreatePostFragment;
 import com.example.blogandroid.fragments.loginactivity.LoginFragment;
 import com.example.blogandroid.fragments.loginactivity.RegisterFragment;
 
@@ -23,7 +24,12 @@ public class FragmentReplacerActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         setContentView(viewRoot);
 
-        setCurrentFragment(new LoginFragment());
+        boolean isCreatePost = getIntent().getBooleanExtra("isCreatePost", false);
+        
+        if (isCreatePost)
+            setCurrentFragment(new CreatePostFragment());
+        else
+            setCurrentFragment(new LoginFragment());
     }
 
     public void setCurrentFragment(Fragment fragment) {
