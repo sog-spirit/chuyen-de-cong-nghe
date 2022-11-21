@@ -14,8 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BlogAndroid"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
         <activity
             android:name=".FragmentReplacerActivity"
             android:exported="true">
