@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.blogandroid.FragmentReplacerActivity;
 import com.example.blogandroid.R;
 import com.example.blogandroid.adapters.CurrentUserPostsAdapter;
 import com.example.blogandroid.apiservice.APIService;
@@ -99,7 +100,7 @@ public class CurrentUserPostsFragment extends Fragment implements CurrentUserPos
     @Override
     public void onResume() {
         super.onResume();
-
+        loadCurrentUserPosts();
     }
 
     private void loadCurrentUserPosts() {
@@ -125,7 +126,11 @@ public class CurrentUserPostsFragment extends Fragment implements CurrentUserPos
 
     @Override
     public void onCurrentUserPostClick(int position) {
-
+        PostModel post = currentUserPostsList.get(position);
+        Intent intent = new Intent(getContext(), FragmentReplacerActivity.class);
+        intent.putExtra("postId", post.getId());
+        intent.putExtra("isEdit", true);
+        getContext().startActivity(intent);
     }
 
     private void queryPosts(String query) {
