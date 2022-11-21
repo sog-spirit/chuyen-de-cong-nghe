@@ -55,4 +55,7 @@ public interface APIService {
 
     @POST("user/register")
     Call<Void> registerUser(@Body HashMap<String, String> userRegisterData);
+
+    @POST("user/logout")
+    Call<Void> logoutUser();
 }
