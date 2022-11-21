@@ -66,4 +66,7 @@ public interface APIService {
 
     @POST("post")
     Call<Void> createPost(@Body HashMap<String, String> newPostData);
+
+    @GET("posts")
+    Call<List<PostModel>> getCurrentUserPosts();
 }

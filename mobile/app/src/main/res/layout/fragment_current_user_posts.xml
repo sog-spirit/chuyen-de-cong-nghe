@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.homeactivity.CurrentUserPostsFragment">
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentUserPostSearchView"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search for your posts..." />
+
+    <LinearLayout
+        android:id="@+id/orderFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/currentUserPostSearchView">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Newest"
+            android:id="@+id/sortDescendingButton"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Oldest"
+            android:id="@+id/sortAscendingButton"
+            style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/postStatusFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/orderFilter">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="All"
+            android:id="@+id/allStatusFilterButton"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Publish"
+            android:id="@+id/publishStatusFilterButton"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Draft"
+            android:id="@+id/draftStatusFilterButton"
+            style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allPosts_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/postStatusFilter"
+        android:layout_marginTop="5dp" />
+
+</RelativeLayout>
