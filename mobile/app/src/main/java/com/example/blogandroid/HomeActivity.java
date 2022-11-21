@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.blogandroid.adapters.ViewPagerAdapter;
 import com.example.blogandroid.apiservice.APIService;
 import com.example.blogandroid.databinding.ActivityHomeBinding;
+import com.google.android.material.tabs.TabLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,6 +20,7 @@ import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding homeBinding;
+    ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         if (getSupportActionBar() != null)
             getSupportActionBar().hide();
         setContentView(viewRoot);
+        initializeUIComponent();
         homeBinding.logoutButton.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
             builder.setMessage("Do you want to logout?");
@@ -45,6 +49,33 @@ public class HomeActivity extends AppCompatActivity {
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
+        });
+    }
+
+    private void initializeUIComponent() {
+        homeBinding.tabLayout.addTab(homeBinding.tabLayout.newTab().setIcon(R.drawable.ic_baseline_home_36));
+
+        homeBinding.tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+        homeBinding.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), homeBinding.tabLayout.getTabCount());
+        homeBinding.homeViewPager.setAdapter(viewPagerAdapter);
+        homeBinding.homeViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(homeBinding.tabLayout));
+        homeBinding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                homeBinding.homeViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
         });
     }
 

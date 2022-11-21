@@ -1,3 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+class Post(models.Model):
+    POST_STATUS = [
+        ("DRAFT", "Draft"),
+        ("PUBLISH", "Publish")
+    ]
+    title = models.CharField(max_length=256)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    content = models.TextField()
+    status = models.CharField(max_length=7, choices=POST_STATUS, default="DRAFT")
+
+    class Meta:
+        ordering = ['-created_on']
+    
+    def __str__(self):
+        return f'Post by {self.user.username}, with id: {self.id}'
