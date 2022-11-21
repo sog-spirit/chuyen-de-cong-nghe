@@ -26,3 +26,13 @@ class PostAPIView(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
+
+class UserPostsAPIView(APIView):
+    def get(self, request):
+        """
+        Get all current user posts
+        """
+        payload = user_authentication(request)
+        posts = Post.objects.filter(user=payload['id'])
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
