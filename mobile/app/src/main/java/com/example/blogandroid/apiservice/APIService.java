@@ -1,5 +1,6 @@
 package com.example.blogandroid.apiservice;
 
+import com.example.blogandroid.models.PostModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -16,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface APIService {
@@ -58,4 +60,7 @@ public interface APIService {
 
     @POST("user/logout")
     Call<Void> logoutUser();
+
+    @GET("post")
+    Call<List<PostModel>> getPosts();
 }
