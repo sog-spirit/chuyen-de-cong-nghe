@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/author_TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Author"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/title_TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"/>
+    </LinearLayout>
+
+</RelativeLayout>

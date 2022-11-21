@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.homeactivity.SearchFragment">
+
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/postSearchView"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search for posts..."/>
+
+    <LinearLayout
+        android:id="@+id/queryType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/postSearchView">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="By title"
+            android:id="@+id/queryByTitleButton"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="By username"
+            android:id="@+id/queryByUsernameButton"
+            style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/searchResult_recyclerView"
+        android:layout_below="@id/queryType"
+        android:layout_marginTop="18dp"/>
+</RelativeLayout>

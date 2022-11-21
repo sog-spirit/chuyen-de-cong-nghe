@@ -54,6 +54,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initializeUIComponent() {
         homeBinding.tabLayout.addTab(homeBinding.tabLayout.newTab().setIcon(R.drawable.ic_baseline_home_36));
+        homeBinding.tabLayout.addTab(homeBinding.tabLayout.newTab().setIcon(R.drawable.ic_baseline_list_36));
+        homeBinding.tabLayout.addTab(homeBinding.tabLayout.newTab().setIcon(R.drawable.ic_baseline_search_36));
 
         homeBinding.tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         homeBinding.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
