@@ -94,4 +94,7 @@ public interface APIService {
 
     @PATCH("comment")
     Call<Void> editComment(@Body HashMap<String, Object> commentEditData);
+
+    @HTTP(method = "DELETE", hasBody = true, path = "comment")
+    Call<Void> deleteComment(@Body HashMap<String, Integer> commentId);
 }

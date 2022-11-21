@@ -91,7 +91,24 @@ public class CommentDetailFragment extends Fragment {
     }
 
     private void deleteComment() {
+        HashMap<String, Integer> commentIdData = new HashMap<>();
+        commentIdData.put("comment_id", commentId);
+        APIService.apiService.deleteComment(commentIdData).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Comment deleted successfully", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(getContext(), "Unable to delete comment", Toast.LENGTH_LONG).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     private void editComment() {
