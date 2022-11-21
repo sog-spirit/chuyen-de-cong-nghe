@@ -91,3 +91,29 @@ class UserPostsAPIView(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
+
+    def delete(self, request):
+        payload = user_authentication(request)
+        post_id = request.data.get('post_id', None)
+        if post_id is None:
+            return Response(
+                {'detail': 'post_id is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        try:
+            post = Post.objects.get(id=post_id)
+        except Post.DoesNotExist:
+            return Response(
+                {'detail': 'Post not found'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        if post.user.id != payload['id']:
+            return Response(
+                {'detail': 'Not current user post'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        post.delete()
+        return Response(
+            {'detail': 'Post deleted successfully'},
+            status=status.HTTP_200_OK
+        )

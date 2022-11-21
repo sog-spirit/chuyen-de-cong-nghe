@@ -155,6 +155,23 @@ public class PostEditFragment extends Fragment {
     }
 
     private void deletePost() {
-        
+        HashMap<String, Integer> postIdData = new HashMap<>();
+        postIdData.put("post_id", postId);
+        APIService.apiService.deletePost(postIdData).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Delete post successfully", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(getContext(), "Unable to delete post", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 }
