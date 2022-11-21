@@ -18,6 +18,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
@@ -76,4 +77,7 @@ public interface APIService {
 
     @PATCH("posts")
     Call<Void> savePost(@Body HashMap<String, Object> editPostData);
+
+    @HTTP(method = "DELETE", hasBody = true, path = "posts")
+    Call<Void> deletePost(@Body HashMap<String, Integer> postIdData);
 }
