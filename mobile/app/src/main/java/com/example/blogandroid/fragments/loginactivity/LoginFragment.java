@@ -1,4 +1,4 @@
-package com.example.blogandroid.fragments;
+package com.example.blogandroid.fragments.loginactivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -54,7 +54,9 @@ public class LoginFragment extends Fragment {
             }
             loginUser(username, password);
         });
-        fragmentLoginBinding.registerButton.setOnClickListener(view -> {});
+        fragmentLoginBinding.registerButton.setOnClickListener(view -> {
+            ((FragmentReplacerActivity) getActivity()).setCurrentFragment(new RegisterFragment());
+        });
         fragmentLoginBinding.usernameTextInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

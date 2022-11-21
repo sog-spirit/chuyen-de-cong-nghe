@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.blogandroid.databinding.ActivityFragmentReplacerBinding;
-import com.example.blogandroid.fragments.LoginFragment;
+import com.example.blogandroid.fragments.loginactivity.LoginFragment;
+import com.example.blogandroid.fragments.loginactivity.RegisterFragment;
 
 public class FragmentReplacerActivity extends AppCompatActivity {
     private ActivityFragmentReplacerBinding fragmentReplacerBinding;
@@ -28,6 +29,9 @@ public class FragmentReplacerActivity extends AppCompatActivity {
     public void setCurrentFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        if (fragment instanceof RegisterFragment) {
+            fragmentTransaction.addToBackStack(null);
+        }
         fragmentTransaction.replace(fragmentReplacerBinding.frameLayout.getId(), fragment);
         fragmentTransaction.commit();
     }

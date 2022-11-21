@@ -52,4 +52,7 @@ public interface APIService {
 
     @POST("user/login")
     Call<Void> loginUser(@Body HashMap<String, String> userLoginData);
+
+    @POST("user/register")
+    Call<Void> registerUser(@Body HashMap<String, String> userRegisterData);
 }
