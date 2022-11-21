@@ -36,3 +36,58 @@ class UserPostsAPIView(APIView):
         posts = Post.objects.filter(user=payload['id'])
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
+
+    def post(self, request):
+        payload = user_authentication(request)
+        post_id = request.data.get('post_id', None)
+        if post_id is None:
+            return Response(
+                {'detail': 'post_id is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        try:
+            post = Post.objects.get(id=post_id)
+        except Post.DoesNotExist:
+            return Response(
+                {'detail': 'Post not found'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        if post.user.id != payload['id']:
+            return Response(
+                {'detail': 'Not current user post'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        serializer = PostSerializer(post)
+        return Response(serializer.data)
+
+    def patch(self, request):
+        payload = user_authentication(request)
+        post_id = request.data.get('post_id', None)
+        if post_id is None:
+            return Response(
+                {'detail': 'post_id is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        try:
+            post = Post.objects.get(id=post_id)
+        except Post.DoesNotExist:
+            return Response(
+                {'detail': 'Post not found'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        if post.user.id != payload['id']:
+            return Response(
+                {'detail': 'Not current user post'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        serializer = PostSerializer(instance=post, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {'detail': 'Post edit successfully'},
+                status=status.HTTP_200_OK
+            )
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
