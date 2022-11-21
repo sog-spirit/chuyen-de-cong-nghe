@@ -5,6 +5,36 @@ from datetime import datetime, timedelta
 import jwt
 from django.contrib.auth.models import User
 
+class UserRegister(APIView):
+    def post(self, request):
+        username = request.data.get('username', None)
+        password = request.data.get('password', None)
+        if username is None or password is None:
+            response = Response()
+            message = {}
+            if username is None:
+                message['username'] = 'This field is required'
+            if password is None:
+                message['password'] = 'This field is required'
+            response.data = message
+            response.status_code = status.HTTP_400_BAD_REQUEST
+            return response
+
+        user = User.objects.filter(username=username).first()
+        if user is not None:
+            return Response(
+                {'detail': 'Username is existed'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        User.objects.create_user(
+            username=username,
+            password=password
+        )
+        return Response(
+            {'detail': 'User registered successfully'},
+            status=status.HTTP_201_CREATED
+        )
+
 class UserLogin(APIView):
     def post(self, request):
         username = request.data.get('username', None)
