@@ -10,3 +10,19 @@ class PostAPIView(APIView):
         posts = Post.objects.filter(status="PUBLISH")
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
+
+    def post(self, request):
+        payload = user_authentication(request)
+        data = request.data.copy()
+        data['user'] = payload['id']
+        serializer = PostSerializer(data=data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(
+                {'detail': 'Post created successfully'},
+                status=status.HTTP_201_CREATED
+            )
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Blog Android</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="post_status">
+        <item>Draft</item>
+        <item>Publish</item>
+    </string-array>
 </resources>
