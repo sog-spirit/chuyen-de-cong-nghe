@@ -76,3 +76,12 @@ class UserLogin(APIView):
             'jwt': token
         }
         return response
+
+class UserLogout(APIView):
+    def post(self, request):
+        response = Response()
+        response.delete_cookie('jwt')
+        response.data = {
+            'detail': 'Logout successfully'
+        }
+        return response
