@@ -18,6 +18,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface APIService {
@@ -69,4 +70,10 @@ public interface APIService {
 
     @GET("posts")
     Call<List<PostModel>> getCurrentUserPosts();
+
+    @POST("posts")
+    Call<PostModel> getPostById(@Body HashMap<String, Integer> postIdData);
+
+    @PATCH("posts")
+    Call<Void> savePost(@Body HashMap<String, Object> editPostData);
 }
