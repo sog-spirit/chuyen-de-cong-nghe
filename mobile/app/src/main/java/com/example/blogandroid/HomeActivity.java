@@ -50,6 +50,11 @@ public class HomeActivity extends AppCompatActivity {
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         });
+        homeBinding.createPostButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, FragmentReplacerActivity.class);
+            intent.putExtra("isCreatePost", true);
+            HomeActivity.this.startActivity(intent);
+        });
     }
 
     private void initializeUIComponent() {
