@@ -1,4 +1,4 @@
-from .models import Post, Comment
+from .models import Post, Comment, Chat
 from rest_framework import serializers
 
 class PostSerializer(serializers.ModelSerializer):
@@ -13,4 +13,11 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
+        fields = '__all__'
+
+class ChatSerializer(serializers.ModelSerializer):
+    user_one_name = serializers.CharField(source='user_one.username', read_only=True)
+    user_two_name = serializers.CharField(source='user_two.username', read_only=True)
+    class Meta:
+        model = Chat
         fields = '__all__'

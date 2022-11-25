@@ -2,6 +2,7 @@ from django.urls import path
 from .views.user_views import UserLogin, UserRegister, UserLogout
 from .views.post_views import PostAPIView, UserPostsAPIView
 from .views.comment_views import CommentAPIView, CommentsAPIView
+from .views.chat_views import ChatsAPIView, GetChatIdAPIView
 
 urlpatterns = [
     path('user/login', UserLogin.as_view()),
@@ -11,4 +12,6 @@ urlpatterns = [
     path('posts', UserPostsAPIView.as_view()),
     path('comment', CommentAPIView.as_view()),
     path('comments', CommentsAPIView.as_view()),
+    path('chat', GetChatIdAPIView.as_view()),
+    path('chats', ChatsAPIView.as_view()),
 ]
