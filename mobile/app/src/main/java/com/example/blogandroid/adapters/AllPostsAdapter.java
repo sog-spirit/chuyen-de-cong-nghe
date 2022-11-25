@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.blogandroid.FragmentReplacerActivity;
 import com.example.blogandroid.databinding.AllPostsItemBinding;
 import com.example.blogandroid.models.PostModel;
 
@@ -35,7 +36,10 @@ public class AllPostsAdapter extends RecyclerView.Adapter<AllPostsAdapter.AllPos
         holder.allPostsItemBinding.timeTextView.setText(post.getCreated_on().toString());
         holder.allPostsItemBinding.contentTextView.setText(post.getContent());
         holder.allPostsItemBinding.commentButton.setOnClickListener(view -> {
-
+            Intent intent = new Intent(holder.allPostsItemBinding.authorTextView.getContext(), FragmentReplacerActivity.class);
+            intent.putExtra("postId", post.getId());
+            intent.putExtra("isComment", true);
+            holder.allPostsItemBinding.authorTextView.getContext().startActivity(intent);
         });
     }
 
