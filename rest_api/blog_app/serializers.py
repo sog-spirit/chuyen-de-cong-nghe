@@ -1,5 +1,11 @@
+from django.contrib.auth.models import User
 from .models import Post, Comment, Chat, Message
 from rest_framework import serializers
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id',)
 
 class PostSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='user.username', read_only=True)

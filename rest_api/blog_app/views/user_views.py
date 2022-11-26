@@ -4,6 +4,15 @@ from rest_framework import status
 from datetime import datetime, timedelta
 import jwt
 from django.contrib.auth.models import User
+from .authentication_utils import user_authentication
+from ..serializers import UserSerializer
+
+class UserInfo(APIView):
+    def get(self, request):
+        payload = user_authentication(request)
+        user = User.objects.get(id=payload['id'])
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
 class UserRegister(APIView):
     def post(self, request):

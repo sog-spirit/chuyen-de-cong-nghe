@@ -1,7 +1,10 @@
 package com.example.blogandroid.apiservice;
 
+import com.example.blogandroid.models.ChatListModel;
 import com.example.blogandroid.models.CommentModel;
+import com.example.blogandroid.models.MessageModel;
 import com.example.blogandroid.models.PostModel;
+import com.example.blogandroid.models.UserModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -55,6 +58,8 @@ public interface APIService {
             return Collections.emptyList();
         }
     }
+    @GET("user/info")
+    Call<UserModel> getUserId();
 
     @POST("user/login")
     Call<Void> loginUser(@Body HashMap<String, String> userLoginData);
@@ -97,4 +102,10 @@ public interface APIService {
 
     @HTTP(method = "DELETE", hasBody = true, path = "comment")
     Call<Void> deleteComment(@Body HashMap<String, Integer> commentId);
+
+    @GET("chats")
+    Call<List<ChatListModel>> getChats();
+
+    @POST("messages/get/newest")
+    Call<MessageModel> getNewestMessage(@Body HashMap<String, Integer> userTwoId);
 }
