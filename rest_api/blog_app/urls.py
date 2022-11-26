@@ -1,11 +1,12 @@
 from django.urls import path
-from .views.user_views import UserLogin, UserRegister, UserLogout, UserInfo
+from .views.user_views import UserLogin, UserRegister, UserLogout, UserInfo, UserList
 from .views.post_views import PostAPIView, UserPostsAPIView
 from .views.comment_views import CommentAPIView, CommentsAPIView
 from .views.chat_views import ChatsAPIView, GetChatIdAPIView
 from .views.message_views import GetMessageAPIView, GetNewestMessageAPIView, CreateMessageAPIView
 
 urlpatterns = [
+    path('users', UserList.as_view()),
     path('user/info', UserInfo.as_view()),
     path('user/login', UserLogin.as_view()),
     path('user/register', UserRegister.as_view()),

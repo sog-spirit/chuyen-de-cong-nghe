@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import jwt
 from django.contrib.auth.models import User
 from .authentication_utils import user_authentication
-from ..serializers import UserSerializer
+from ..serializers import UserSerializer, UsernameSerializer
 
 class UserInfo(APIView):
     def get(self, request):
@@ -94,3 +94,10 @@ class UserLogout(APIView):
             'detail': 'Logout successfully'
         }
         return response
+
+class UserList(APIView):
+    def get(self, request):
+        payload = user_authentication(request)
+        users = User.objects.all().exclude(id=payload['id'])
+        serializer = UsernameSerializer(users, many=True)
+        return Response(serializer.data)

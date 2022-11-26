@@ -7,6 +7,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id',)
 
+class UsernameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
 class PostSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='user.username', read_only=True)
 
