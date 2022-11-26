@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.blogandroid.fragments.homeactivity.AllPostsFragment;
+import com.example.blogandroid.fragments.homeactivity.ChatListFragment;
 import com.example.blogandroid.fragments.homeactivity.CurrentUserPostsFragment;
 import com.example.blogandroid.fragments.homeactivity.SearchFragment;
 
@@ -27,6 +28,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return new CurrentUserPostsFragment();
             case 2:
                 return new SearchFragment();
+            case 3:
+                return new ChatListFragment();
         }
         return new AllPostsFragment();
     }
