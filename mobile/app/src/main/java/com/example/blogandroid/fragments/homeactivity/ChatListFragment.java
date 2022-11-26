@@ -1,5 +1,6 @@
 package com.example.blogandroid.fragments.homeactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.blogandroid.FragmentReplacerActivity;
 import com.example.blogandroid.R;
 import com.example.blogandroid.adapters.ChatListAdapter;
 import com.example.blogandroid.apiservice.APIService;
@@ -56,7 +58,16 @@ public class ChatListFragment extends Fragment implements ChatListAdapter.OnCurr
 
     @Override
     public void onCurrentChatListItemClick(int position) {
-
+        ChatListModel item = chatList.get(position);
+        Intent intent = new Intent(getContext(), FragmentReplacerActivity.class);
+        intent.putExtra("isMessage", true);
+        intent.putExtra("userId", userId);
+        intent.putExtra("chatId", item.getId());
+        if (item.getUser_one() != userId)
+            intent.putExtra("secondUserId", item.getUser_one());
+        else
+            intent.putExtra("secondUserId", item.getUser_two());
+        getContext().startActivity(intent);
     }
 
     private void initializeUI() {

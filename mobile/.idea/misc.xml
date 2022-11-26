@@ -10,6 +10,7 @@
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/comment_item.xml" value="0.17755825734549138" />
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/current_user_posts_item.xml" value="0.17755825734549138" />
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/fragment_all_posts.xml" value="0.17806484295845998" />
+        <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/fragment_chat_detail.xml" value="0.17806484295845998" />
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/fragment_chat_list.xml" value="0.18034447821681865" />
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/fragment_comment.xml" value="0.17806484295845998" />
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/fragment_comment_detail.xml" value="0.17806484295845998" />
@@ -21,7 +22,9 @@
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/fragment_register.xml" value="0.171225937183384" />
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/fragment_search.xml" value="0.17806484295845998" />
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/new_chat_item.xml" value="0.17755825734549138" />
+        <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/received_message_item.xml" value="0.17983789260385005" />
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/search_post_item.xml" value="0.17755825734549138" />
+        <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/sent_message_item.xml" value="0.17983789260385005" />
         <entry key="..\:/chuyen_de_cong_nghe/mobile/app/src/main/res/layout/spinner_item.xml" value="0.17755825734549138" />
       </map>
     </option>

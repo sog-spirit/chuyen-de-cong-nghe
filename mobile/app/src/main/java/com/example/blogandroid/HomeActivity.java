@@ -55,6 +55,11 @@ public class HomeActivity extends AppCompatActivity {
             intent.putExtra("isCreatePost", true);
             HomeActivity.this.startActivity(intent);
         });
+        homeBinding.newChatButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, FragmentReplacerActivity.class);
+            intent.putExtra("isNewChat", true);
+            HomeActivity.this.startActivity(intent);
+        });
     }
 
     private void initializeUIComponent() {

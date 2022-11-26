@@ -119,4 +119,10 @@ public interface APIService {
 
     @POST("messages/get/newest")
     Call<MessageModel> getNewestMessage(@Body HashMap<String, Integer> userTwoId);
+
+    @POST("messages/get")
+    Call<List<MessageModel>> getMessages(@Body HashMap<String, Integer> userTwoId);
+
+    @POST("messages/create")
+    Call<Void> createMessage(@Body HashMap<String, Object> messageData);
 }
