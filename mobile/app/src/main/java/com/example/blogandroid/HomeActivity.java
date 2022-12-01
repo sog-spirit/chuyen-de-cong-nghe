@@ -50,12 +50,23 @@ public class HomeActivity extends AppCompatActivity {
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         });
+        homeBinding.createPostButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, FragmentReplacerActivity.class);
+            intent.putExtra("isCreatePost", true);
+            HomeActivity.this.startActivity(intent);
+        });
+        homeBinding.newChatButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, FragmentReplacerActivity.class);
+            intent.putExtra("isNewChat", true);
+            HomeActivity.this.startActivity(intent);
+        });
     }
 
     private void initializeUIComponent() {
         homeBinding.tabLayout.addTab(homeBinding.tabLayout.newTab().setIcon(R.drawable.ic_baseline_home_36));
         homeBinding.tabLayout.addTab(homeBinding.tabLayout.newTab().setIcon(R.drawable.ic_baseline_list_36));
         homeBinding.tabLayout.addTab(homeBinding.tabLayout.newTab().setIcon(R.drawable.ic_baseline_search_36));
+        homeBinding.tabLayout.addTab(homeBinding.tabLayout.newTab().setIcon(R.drawable.ic_baseline_message_36));
 
         homeBinding.tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         homeBinding.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
