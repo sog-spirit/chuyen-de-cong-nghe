@@ -6,6 +6,13 @@ import jwt
 from django.contrib.auth.models import User
 from .authentication_utils import user_authentication
 from ..serializers import UserSerializer, UsernameSerializer
+import logging
+import logstash
+
+host = 'localhost'
+test_logger = logging.getLogger('python-logstash-logger')
+test_logger.setLevel(logging.DEBUG)
+test_logger.addHandler(logstash.LogstashHandler(host, 5959))
 
 class UserInfo(APIView):
     def get(self, request):
@@ -61,12 +68,14 @@ class UserLogin(APIView):
 
         user = User.objects.filter(username=username).first()
         if user is None:
+            test_logger.debug('python-logstash: username or password is incorrect')
             return Response(
                 {'detail': 'User or password is invalid'},
                 status=status.HTTP_401_UNAUTHORIZED
             )
 
         if not user.check_password(password):
+            test_logger.debug('python-logstash: username or password is incorrect')
             return Response(
                 {'detail': 'User or password is invalid'},
                 status=status.HTTP_401_UNAUTHORIZED

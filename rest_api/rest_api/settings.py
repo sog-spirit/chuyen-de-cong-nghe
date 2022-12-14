@@ -11,6 +11,17 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://4ef8b7700b95449e9b4dc43901d54338@o4504326378160128.ingest.sentry.io/4504326379864064",
+    integrations=[
+        DjangoIntegration(),
+    ],
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -131,4 +142,27 @@ CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%d-%m-%Y %H:%M:%S',
+}
+
+LOGGING = {
+  'version': 1,
+  'handlers': {
+      'logstash': {
+          'level': 'DEBUG',
+          'class': 'logstash.LogstashHandler',
+          'host': 'localhost',
+          'port': 5959, # Default value: 5959
+           # Version of logstash event schema. Default value: 0 (for backward compatibility of the library)
+          'message_type': 'logstash',  # 'type' field in logstash message. Default value: 'logstash'.
+          'fqdn': False, # Fully qualified domain name. Default value: false.
+          'tags': ['tag1', 'tag2'], # list of tags. Default: None.
+      },
+  },
+  'loggers': {
+      'django.server': {
+          'handlers': ['logstash'],
+          'level': 'DEBUG',
+          'propagate': True,
+      },
+  },
 }
