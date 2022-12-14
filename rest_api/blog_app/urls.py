@@ -5,11 +5,11 @@ from .views.comment_views import CommentAPIView, CommentsAPIView
 from .views.chat_views import ChatsAPIView, GetChatIdAPIView
 from .views.message_views import GetMessageAPIView, GetNewestMessageAPIView, CreateMessageAPIView
 
-def trigger_error(request):
-    division_by_zero = 1/0
+# def trigger_error(request):
+#     division_by_zero = 1/0
 
 urlpatterns = [
-    path('sentry-debug', trigger_error),
+    # path('sentry-debug', trigger_error),
     path('users', UserList.as_view()),
     path('user/info', UserInfo.as_view()),
     path('user/login', UserLogin.as_view()),
